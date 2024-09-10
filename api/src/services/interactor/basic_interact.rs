@@ -5,8 +5,6 @@ use ping_pong_egld::ping_pong_proxy;
 
 use multiversx_sc_snippets::{hex, imports::*};
 
-const INTERACTOR_SCENARIO_TRACE_PATH: &str = "interactor_trace.scen.json"; // wrong - doesn't exist
-
 const PINGPONG_CODE_PATH: MxscPath = MxscPath::new("../../../output/ping-pong-egld.mxsc.json");
 #[allow(unused)]
 pub struct ActixInteractor {
@@ -19,10 +17,7 @@ pub struct ActixInteractor {
 
 impl ActixInteractor {
     pub async fn init() -> Self {
-        // let config = Config::load_config();
         let mut interactor = Interactor::new("https://devnet-gateway.multiversx.com")
-            .await
-            .with_tracer(INTERACTOR_SCENARIO_TRACE_PATH)
             .await;
 
         let ping_pong_owner = interactor.register_wallet(Wallet::from(test_wallets::alice()));

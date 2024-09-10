@@ -1,0 +1,22 @@
+[package]
+name = "ping-pong-egld"
+version = "0.0.2"
+authors = [ "Bruda Claudiu-Marcel <claudiu725@yahoo.com>",]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/ping_pong.rs"
+
+[dependencies]
+multiversx-sc-scenario = "0.53.0"
+multiversx-sc = "0.53.0"
+
+[workspace]
+
+members = [
+  "frontend",
+  "api",
+  "api/src/services/tx-executor-service",
+  "api/src/services/sc-query-service",
+]

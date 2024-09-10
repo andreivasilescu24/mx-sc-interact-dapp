@@ -1,0 +1,416 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #001F3F;
+    transition: filter 0.3s ease;
+}
+
+h1 {
+    color: #d6d6d6;
+    text-align: center;
+}
+
+p {
+    color: #989898;
+    text-align: center;
+}
+
+.column_name {
+    color: #d6d6d6;
+    font-weight: bold;
+    text-align: center;
+}
+
+#walletButton {
+    padding: 15px 25px; 
+    background-color:   #1a9e7f;
+    color: #d6d6d6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#walletButton:hover {
+    background-color: #16a469;
+    transform: scale(1.05);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-top: 50px;
+}
+
+#queryContainer, #txContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.sc-interact {
+    padding: 15px 25px;
+    background-color: #008cb3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 210px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    justify-content: center;
+    display: flex;
+}
+
+.sc-interact:hover {
+    background-color: #0068b3;
+    transform: scale(1.05);
+}
+
+.ping-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#deploySubmit, #pingSubmit, #pongSubmit {
+    padding: 15px 25px;
+    background-color: #008cb3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#deploySubmit:hover, #pingSubmit:hover, #pongSubmit:hover {
+    background-color: #0068b3;
+    transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(148, 136, 136, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.3s ease;
+}
+
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+    transition: opacity .5s ease-out;
+    opacity: 0;
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#txStatusModal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding-right: 10px;
+    padding-top: 6.5px;
+    cursor: pointer;
+}
+
+#txStatusModal .close:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#bodyWrapper {
+    transition: filter 0.3s ease;
+}
+
+#bodyWrapper.modal-open {
+    filter: blur(5px);
+}
+
+#txStatusModal {
+    opacity: 0;
+    margin-top: 230px;
+    left: 20px;
+    bottom: 20px;
+    background-color: #F2F2F2;
+    text-align: left;
+    position: fixed;
+    width: 290px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+  }
+  
+#txStatusModal h2 {
+    color: #1b1b1b;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 23px; ;
+  }
+  
+#txStatusContent {
+    padding: 10px;
+  }
+
+#statusImage {
+    margin-left: 10px;
+  }
+
+#statusContainer {
+    display: flex;
+    gap: 30px;
+  }
+
+  #status {
+    color: #1b1b1b;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 6px;
+  }
+
+  #txStatusModal.show {
+    opacity: 1;
+  }
+
+#headerContainer {
+    display: flex;
+    align-items: center; /* Aligns vertically */
+    gap: 10px; /* Space between arrow and text */
+}
+
+/* Modal Styling */
+#contractAddrModal {
+    background-color: transparent;
+    width: 350px;
+    border-radius: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    height: auto;
+    padding: 10px;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smoother transition */
+    overflow: hidden; /* Hide address until expanded */
+}
+
+#contractAddrModal h2 {
+    font-size: 23px;
+    margin: 0;
+    transition: color 0.3s ease; /* Smooth color change */
+}
+
+
+#contractAddrModal.expanded {
+    background-color: white;
+    color: black;
+    height: auto; /* Allow content to expand naturally */
+}
+
+
+/* Address Container */
+#scAddressContainer {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+}
+
+#contractAddrModal.expanded #scAddressContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    transition: display 0.3s ease;
+}
+
+#scAddress {
+    font-size: 14px;
+    word-wrap: break-word;
+    max-width: 260px;
+    padding-left: 15px;
+}
+
+/* Copy Button */
+#copyAddr {
+    width: 24px;
+    cursor: pointer;
+}
+
+.copy-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.copy-button:hover {
+    transform: scale(1.1); /* Subtle scale effect */
+}
+
+#copyIcon {
+    width: 18px;
+    height: 18px;
+}
+
+#copySuccess {
+    width: 18px;
+    height: 18px;
+}
+
+/* SVG Arrows Styling */
+.size-6 {
+    color: white;
+    width: 30px;
+    height: 30px;
+}
+
+#contractAddrModal.expanded .size-6 {
+    color: black; /* Change arrow color to black when expanded */
+}
+
+#toggleButton {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.arrow-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.arrow {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease, color 0.3s ease;
+    transform-origin: center;
+}
+
+
+#contractAddrModal.expanded .arrow {
+    stroke: black; /* Change arrow stroke color on expansion */
+}
+
+#arrowUp {
+    opacity: 0;
+}
+
+#arrowDown {
+    opacity: 1;
+}
+
+/* Hover Effect */
+#toggleButton:hover .arrow {
+    transform: scale(1.2);
+    transform-origin: center;
+}
+
+#toggleButton:hover #arrowUp, #toggleButton:hover #arrowDown {
+    opacity: 1;
+}
+
+#contractAddrModal.expanded #arrowUp {
+    opacity: 1;
+    display: block;
+}
+
+#contractAddrModal.expanded #arrowDown {
+    display: none;
+}
+
+#redirectLink {
+    padding-top: 3px;
+    transition: transform 0.3s ease;
+}
+
+#redirectLink:hover {
+    transform: scale(1.2);
+}
+
+
+#redirect {
+    width: 20px;
+    height: 20px;
+}
+
+#userAddressesModal .modal-content {
+    width: 600px;
+    padding: 30px;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 80vh;
+    word-wrap: break-word;
+}
